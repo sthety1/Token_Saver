@@ -58,7 +58,7 @@ export interface OrderCommand {
 
 ## Team action
 
-1. Add [`templates/.copilotignore`](../../templates/.copilotignore) to the repo root.
+1. Add [`.copilotignore`](../../.copilotignore) to the repo root.
 2. Never attach: `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `node_modules/**`, `dist/**`, minified bundles.
 
 ## Related

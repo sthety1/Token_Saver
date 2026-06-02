@@ -6,10 +6,11 @@ This repository trains enterprise engineering teams to maximize GitHub Copilot p
 
 | Resource | Purpose |
 |----------|---------|
-| [INSTALL.md](INSTALL.md) | **Copy this kit into any repo** — instructions + `.copilotignore` |
-| [examples/](examples/) | Hands-on cache-friendly and anti-pattern exercises |
-| [.github/copilot-instructions.md](.github/copilot-instructions.md) | Drop-in repo system prompt for token + security + Azure defaults |
-| [templates/](templates/) | Exercise template and `.copilotignore` source |
+| [INSTALL.md](INSTALL.md) | **Start here** — VS Code + GitHub Copilot drop-in (5 min) |
+| [.github/copilot-instructions.md](.github/copilot-instructions.md) | Copy to every service repo — token, security, and Azure defaults |
+| [.copilotignore](.copilotignore) | Copy to every service repo — block vendor/build token bleed |
+| [examples/](examples/) | Optional hands-on Before/After training labs |
+| [templates/exercise-template.md](templates/exercise-template.md) | Optional format for team-specific exercises |
 
 **Last verified:** June 2026 (UBB effective June 1, 2026; promotional credit uplift through September 1, 2026). Pricing and models change—always confirm against [GitHub Docs](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing).
 
@@ -661,13 +662,12 @@ Content is training material for internal enterprise use. Verify billing numbers
 
 ```text
 GitHub_Tokensaver/
-├── README.md
-├── INSTALL.md                 ← copy kit into other repos
-├── .github/copilot-instructions.md
-├── templates/
-│   ├── exercise-template.md   ← uniform Before/After format
-│   └── .copilotignore
-└── examples/
+├── INSTALL.md                          ← start here
+├── README.md                           ← full curriculum
+├── .github/copilot-instructions.md     ← copy to every service repo
+├── .copilotignore                      ← copy to every service repo
+├── templates/exercise-template.md      ← optional team labs
+└── examples/                           ← optional training
     ├── cache_friendly_patterns/
     └── token_bleed_anti_patterns/
 ```

@@ -1,72 +1,141 @@
-# Portable install — copy into any repository
+# Install — VS Code + GitHub Copilot
 
-Use this kit to give every service repo the same **token-saving defaults** without re-reading the full training guide.
+**Audience:** Engineers and platform teams deploying token-saving defaults across service repositories.
 
-## Minimum drop-in (5 minutes)
+**Stack:** Visual Studio Code **1.120+**, GitHub Copilot extension (Business or Enterprise), Usage-Based Billing with pooled GitHub AI Credits.
 
-Copy these files into each project:
+This kit has nothing to do with other AI IDEs. Every path below is for **GitHub Copilot in VS Code**.
+
+---
+
+## Quick start (5 minutes)
+
+Copy **two files** into each project:
 
 | From this repo | To your project |
 |----------------|-----------------|
 | [`.github/copilot-instructions.md`](.github/copilot-instructions.md) | `.github/copilot-instructions.md` |
-| [`templates/.copilotignore`](templates/.copilotignore) | `.copilotignore` (repo root) |
-
-Then customize:
-
-1. Replace Azure NorthStar table rows with your landing-zone names (APIM, Service Bus, Key Vault, etc.).
-2. Adjust model tier names when GitHub publishes new models.
-3. Add path-specific rules under `.github/instructions/*.instructions.md` if needed.
-
-## Optional: team training examples
-
-Copy the entire [`examples/`](examples/) folder if you want local Before/After labs in the repo:
+| [`.copilotignore`](.copilotignore) | `.copilotignore` (repo root) |
 
 ```bash
-cp .github/copilot-instructions.md /path/to/your-repo/.github/
-cp templates/.copilotignore /path/to/your-repo/.copilotignore
-mkdir -p /path/to/your-repo/examples/token-saver
-# Trailing /. copies contents only — avoids examples/token-saver/examples/ nesting
-cp -R examples/. /path/to/your-repo/examples/token-saver/
+REPO=/path/to/your-service-repo
+
+mkdir -p "$REPO/.github"
+cp .github/copilot-instructions.md "$REPO/.github/copilot-instructions.md"
+cp .copilotignore "$REPO/.copilotignore"
 ```
 
-Point engineers to `examples/token-saver/README.md` for lab instructions.
+Open the project in VS Code. Copilot Chat loads `.github/copilot-instructions.md` automatically as a **stable prefix** — your architecture rules, file budget, and model guidance apply on every turn without re-pasting them into chat.
 
-## Uniform exercise format
+---
 
-Every exercise in this repo follows the same markdown shape so you can add your own:
+## What you get
 
-1. Copy [`templates/exercise-template.md`](templates/exercise-template.md).
-2. Fill in **Category**, **Skill**, **Scenario**, **Before**, **After**, and metadata fields.
-3. Place under `examples/token-saver/cache_friendly_patterns/` or `examples/token-saver/token_bleed_anti_patterns/` in your service repo (or the equivalent paths in this training repo).
-4. Add a row to that folder's `README.md` index table.
+| File | Role |
+|------|------|
+| `.github/copilot-instructions.md` | Repo-wide system instructions — FinOps, context limits, cache habits, Azure NorthStar defaults, Scope-Down checklist |
+| `.copilotignore` | Excludes `node_modules/`, `dist/`, lockfiles, logs, and build artifacts from Copilot context |
 
-### Required sections (every exercise)
+**Why two files matter under UBB:** Re-pasting standards every chat turn bills as **fresh input**. Instructions in `.github/copilot-instructions.md` load once per session and reuse across turns at **cached-input** rates when the prefix stays stable. `.copilotignore` stops accidental attachment of vendor trees and build output — the most common source of token bleed.
 
-```markdown
-### Before (Token Wasteful / Non-Compliant)
-### After (FinOps Clean / Enterprise Compliant)
-**Why:** …
-**Credit tier:** …
-**Compliance:** Pass | Fail | Risk
+---
+
+## Customize (before wide rollout)
+
+Edit `.github/copilot-instructions.md` in each service repo:
+
+1. **Azure NorthStar** — replace APIM, Service Bus, Key Vault, and naming rows with your landing-zone standards.
+2. **Model tiers** — update S/M/L model names when GitHub publishes new models ([Models and pricing](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing)).
+3. **Compliance** — align refusal language with your security team (PII, secrets, production data).
+
+Optional — path-specific rules for part of the codebase:
+
+```text
+.github/instructions/
+  api.instructions.md       # front matter: applyTo: "**/Controllers/**"
+  workers.instructions.md   # applyTo: "**/Workers/**"
 ```
 
-### Prompt conventions
+Keep repo-wide rules in `copilot-instructions.md`; use `.github/instructions/*.instructions.md` only when a folder needs extra guidance.
 
-| Pattern | Use |
-|---------|-----|
-| `#file path/to/file` | Default attachment (≤3 files) |
-| Active selection | Single-function debug |
-| `@workspace` | Avoid unless tech-lead approved |
-| Model tier in prompt | `Model: Haiku 4.5` (S), `Sonnet 4.6` (M), frontier (L + approval) |
-| Standards text | **Never** re-paste — reference `copilot-instructions.md` |
+---
 
-## Verify after install
+## Verify in VS Code
 
-- [ ] Copilot Chat loads repo instructions (check VS Code Copilot settings / usage panel).
-- [ ] `.copilotignore` excludes `node_modules/`, `dist/`, lockfiles.
-- [ ] PR template or team wiki links to Scope-Down checklist in `copilot-instructions.md`.
-- [ ] One pilot engineer runs Exercise 1 Before vs After (`examples/token-saver/cache_friendly_patterns/01_stable_system_prefix.md` in your service repo).
+After copying into a pilot repo:
 
-## Full curriculum
+- [ ] Open the repo in VS Code 1.120+ with Copilot signed in.
+- [ ] Open Copilot Chat — confirm repo instructions are active (Copilot settings or usage panel).
+- [ ] Confirm `.copilotignore` is at the **repo root** and excludes `node_modules/`, `dist/`, lockfiles.
+- [ ] Run a smoke test: short prompt + one `#file` — no standards preamble in chat.
+- [ ] Link your team wiki or PR template to the **Scope-Down checklist** in `copilot-instructions.md`.
+- [ ] One engineer runs [Exercise 1](examples/cache_friendly_patterns/01_stable_system_prefix.md) Before vs After and compares credit drawdown.
 
-See [README.md](README.md) for UBB economics, admin budgets, and rollout checklist.
+---
+
+## How to prompt after install
+
+| Do | Don't |
+|----|-------|
+| Short task text + `#file` (≤3 files) | Re-paste architecture standards each turn |
+| Active selection for single-function debug | `@workspace` for vague tasks ("fix the app") |
+| Continue the same chat when files are unchanged | Attach lockfiles, `dist/`, or full CI logs |
+| Inline completions / NES for small edits (free) | Use Chat for keystroke-level changes |
+| Reference "per repo instructions" | Paste 400+ tokens of policy before every ask |
+
+**Example — wasteful:**
+
+> We use APIM, Service Bus, App Insights, managed identity, Key Vault, Polly, correlation IDs, xUnit, Bicep… Add a refund handler.
+
+**Example — clean:**
+
+> Add `RefundRequested` Service Bus handler per repo instructions. `#file src/Orders.Worker/Handlers/`
+
+Prompt conventions: `#file path` (default), active selection (debug), model tier S/M/L when choosing models, standards always in `copilot-instructions.md` never in chat.
+
+---
+
+## Optional: training labs in service repos
+
+To embed Before/After exercises locally (onboarding, lunch-and-learns):
+
+```bash
+REPO=/path/to/your-service-repo
+
+mkdir -p "$REPO/examples/token-saver"
+cp -R examples/. "$REPO/examples/token-saver/"
+```
+
+Point engineers to `examples/token-saver/README.md`. Labs are **not required** for Copilot to follow the rules — only `copilot-instructions.md` + `.copilotignore` are.
+
+To add your own exercise: copy [`templates/exercise-template.md`](templates/exercise-template.md), fill in Before/After sections, and index it in the folder README.
+
+---
+
+## Platform team rollout
+
+| Week | Action |
+|------|--------|
+| 1 | Publish this repo internally; confirm VS Code and Copilot extension versions |
+| 2 | Deploy the two-file drop-in to pilot service repos |
+| 3 | Lunch-and-learn using [examples/](examples/) labs |
+| 4 | Set user budgets for agent-heavy teams; enable billing alerts at 70% / 90% |
+| 5 | Retro: credits consumed vs stories closed; tune model policy |
+
+Full UBB economics, admin budgets, and governance: [README.md](README.md).
+
+---
+
+## Repository layout
+
+```text
+GitHub_Tokensaver/
+├── INSTALL.md                          ← start here (this file)
+├── README.md                           ← full curriculum and FinOps reference
+├── .github/copilot-instructions.md     ← copy to every service repo
+├── .copilotignore                      ← copy to every service repo
+├── templates/exercise-template.md      ← optional: add team-specific labs
+└── examples/                           ← optional: hands-on Before/After training
+    ├── cache_friendly_patterns/
+    └── token_bleed_anti_patterns/
+```

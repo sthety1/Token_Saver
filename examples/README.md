@@ -54,5 +54,5 @@ Every exercise follows the same markdown structure (see [`templates/exercise-tem
 ## Next steps
 
 - Complete all exercises in `cache_friendly_patterns/` before `token_bleed_anti_patterns/`.
-- Copy [`.github/copilot-instructions.md`](../.github/copilot-instructions.md) and [`templates/.copilotignore`](../templates/.copilotignore) into your team's service repositories; customize Azure NorthStar names to match your landing zone.
+- Copy [`.github/copilot-instructions.md`](../.github/copilot-instructions.md) and [`.copilotignore`](../.copilotignore) into your team's service repositories; customize Azure NorthStar names to match your landing zone.
 - Return to the [Master Enterprise Guide](../README.md) for policy rollout and admin budget configuration.

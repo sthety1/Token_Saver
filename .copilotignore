@@ -1,5 +1,4 @@
-# Keeps vendor trees and build artifacts out of Copilot context
-# Source: templates/.copilotignore — see INSTALL.md
+# Keeps vendor trees and build artifacts out of Copilot context — see INSTALL.md
 
 node_modules/
 dist/
