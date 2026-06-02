@@ -4,7 +4,7 @@
 
 **Stack:** Visual Studio Code **1.120+**, GitHub Copilot extension (Business or Enterprise), Usage-Based Billing with pooled GitHub AI Credits.
 
-This kit has nothing to do with other AI IDEs. Every path below is for **GitHub Copilot in VS Code**.
+This kit is for **GitHub Copilot in VS Code** only.
 
 ---
 
@@ -25,7 +25,7 @@ cp .github/copilot-instructions.md "$REPO/.github/copilot-instructions.md"
 cp .copilotignore "$REPO/.copilotignore"
 ```
 
-Open the project in VS Code. Copilot Chat loads `.github/copilot-instructions.md` automatically as a **stable prefix** — your architecture rules, file budget, and model guidance apply on every turn without re-pasting them into chat.
+Open the project in VS Code. Copilot Chat loads `.github/copilot-instructions.md` automatically as a **stable prefix** — architecture rules, file budget, and model guidance apply on every turn without re-pasting them into chat.
 
 ---
 
@@ -69,7 +69,6 @@ After copying into a pilot repo:
 - [ ] Confirm `.copilotignore` is at the **repo root** and excludes `node_modules/`, `dist/`, lockfiles.
 - [ ] Run a smoke test: short prompt + one `#file` — no standards preamble in chat.
 - [ ] Link your team wiki or PR template to the **Scope-Down checklist** in `copilot-instructions.md`.
-- [ ] One engineer runs [Exercise 1](examples/cache_friendly_patterns/01_stable_system_prefix.md) Before vs After and compares credit drawdown.
 
 ---
 
@@ -95,34 +94,17 @@ Prompt conventions: `#file path` (default), active selection (debug), model tier
 
 ---
 
-## Optional: training labs in service repos
-
-To embed Before/After exercises locally (onboarding, lunch-and-learns):
-
-```bash
-REPO=/path/to/your-service-repo
-
-mkdir -p "$REPO/examples/token-saver"
-cp -R examples/. "$REPO/examples/token-saver/"
-```
-
-Point engineers to `examples/token-saver/README.md`. Labs are **not required** for Copilot to follow the rules — only `copilot-instructions.md` + `.copilotignore` are.
-
-To add your own exercise: copy [`templates/exercise-template.md`](templates/exercise-template.md), fill in Before/After sections, and index it in the folder README.
-
----
-
 ## Platform team rollout
 
 | Week | Action |
 |------|--------|
 | 1 | Publish this repo internally; confirm VS Code and Copilot extension versions |
 | 2 | Deploy the two-file drop-in to pilot service repos |
-| 3 | Lunch-and-learn using [examples/](examples/) labs |
+| 3 | Share [README.md](README.md) prompt cheat sheet with engineers |
 | 4 | Set user budgets for agent-heavy teams; enable billing alerts at 70% / 90% |
 | 5 | Retro: credits consumed vs stories closed; tune model policy |
 
-Full UBB economics, admin budgets, and governance: [README.md](README.md).
+Billing overview and links: [README.md](README.md).
 
 ---
 
@@ -131,11 +113,7 @@ Full UBB economics, admin budgets, and governance: [README.md](README.md).
 ```text
 GitHub_Tokensaver/
 ├── INSTALL.md                          ← start here (this file)
-├── README.md                           ← full curriculum and FinOps reference
+├── README.md                           ← overview and prompt cheat sheet
 ├── .github/copilot-instructions.md     ← copy to every service repo
-├── .copilotignore                      ← copy to every service repo
-├── templates/exercise-template.md      ← optional: add team-specific labs
-└── examples/                           ← optional: hands-on Before/After training
-    ├── cache_friendly_patterns/
-    └── token_bleed_anti_patterns/
+└── .copilotignore                      ← copy to every service repo
 ```
