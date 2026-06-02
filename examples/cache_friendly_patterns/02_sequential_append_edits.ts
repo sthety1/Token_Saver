@@ -1,14 +1,5 @@
 /**
- * Contoso.Retail — Cache-friendly edit discipline (illustration)
- *
- * FINOPS LESSON:
- * - APPEND at EOF keeps line numbers 1..N stable → prefix cache survives.
- * - WHOLESALE reorder (imports, moving types) shifts the file fingerprint → cache miss.
- *
- * Run two Copilot Chat sessions on this file:
- *   A) Ask to "add export function validateRefund at bottom"
- *   B) Ask to "alphabetize all imports and reorder all interfaces"
- * Compare turn-2 credit cost in each session.
+ * Contoso.Retail — supporting file for Exercise 2 (see 02_sequential_append_edits.md)
  */
 
 // --- Stable header block: do not rewrite mid-session -----------------
@@ -30,10 +21,4 @@ export function calculateOrderTotal(order: Order): number {
   return order.lines.reduce((sum, line) => sum + line.quantity * line.unitPrice, 0);
 }
 
-// COPILOT TASK (After pattern): "Append validateRefund below calculateOrderTotal"
-// export function validateRefund(order: Order): boolean { ... }
-
-// --- Anti-pattern zone: wholesale refactor invalidates cache ----------
-// COPILOT TASK (Before pattern): "Reorganize entire file: imports first,
-// then types alphabetically, then all functions alphabetically by name"
-// Result: every line potentially moves → full file treated as new input next turn.
+// After pattern: append validateRefund here (see exercise markdown)

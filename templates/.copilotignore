@@ -1,0 +1,15 @@
+# Drop-in template — copy to repo root as `.copilotignore`
+# Keeps vendor trees and build artifacts out of Copilot context (token bleed prevention)
+
+node_modules/
+dist/
+build/
+bin/
+obj/
+*.min.js
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+coverage/
+.terraform/
+*.log

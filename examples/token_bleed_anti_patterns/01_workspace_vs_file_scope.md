@@ -1,10 +1,10 @@
 # Anti-Pattern 1: @workspace vs File Scope
 
-`@workspace` instructs Copilot to reason over a broad repository index. In monorepos, that pulls **irrelevant semantic chunks** into the input window — you pay for tokens your question never needed.
+> **Category:** `token-bleed`  
+> **Skill:** Replace `@workspace` with ≤3 `#file` attachments and a fast model  
+> **Supporting files:** none
 
----
-
-## Context
+## Scenario
 
 Bug: JWT validation fails in `Contoso.Retail.Identity` with error `IDX10503` after a config change.
 
@@ -22,7 +22,7 @@ Bug: JWT validation fails in `Contoso.Retail.Identity` with error `IDX10503` aft
 
 **Credit tier:** **High** (often 100+ credits in large monorepos)
 
-**Compliance:** Risk — workspace may surface files with secrets in comments or test fixtures
+**Compliance:** **Risk** — workspace may surface files with secrets in comments or test fixtures
 
 ---
 
@@ -35,9 +35,9 @@ Bug: JWT validation fails in `Contoso.Retail.Identity` with error `IDX10503` aft
 
 **Why:** Two files, fast model, deterministic scope. Inline tests confirm fix without scanning Payments service.
 
-**Credit tier:** **Low–Medium**
+**Credit tier:** Before = **High** | After = **Low–Medium**
 
-**Compliance:** Pass
+**Compliance:** **Pass**
 
 ---
 

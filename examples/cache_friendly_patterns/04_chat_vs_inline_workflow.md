@@ -1,8 +1,12 @@
 # Exercise 4: Chat vs Inline Completions Workflow
 
-Under UBB, **inline completions** and **next edit suggestions** do **not** consume GitHub AI Credits. Copilot Chat, agent mode, CLI, and code review do.
+> **Category:** `cache-friendly`  
+> **Skill:** Route work to the unlimited inline lane before spending pooled credits  
+> **Supporting files:** none
 
-Route work to the correct lane before you spend pooled credits.
+## Scenario
+
+Under UBB, **inline completions** and **next edit suggestions** do **not** consume GitHub AI Credits. Copilot Chat, agent mode, CLI, and code review do. Route work to the correct lane before you spend pooled credits.
 
 ---
 
@@ -44,6 +48,8 @@ flowchart TD
 
 **Credit tier:** **High**
 
+**Compliance:** **Risk** — workspace may surface unrelated files
+
 ---
 
 ### After (FinOps Clean / Enterprise Compliant)
@@ -52,7 +58,9 @@ flowchart TD
 
 **Why:** Preserves cache, avoids workspace bleed, uses free inline where possible.
 
-**Credit tier:** **Low** (or zero for single-file inline)
+**Credit tier:** Before = **High** | After = **Low** (or zero for single-file inline)
+
+**Compliance:** **Pass**
 
 ---
 

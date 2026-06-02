@@ -2,6 +2,10 @@
 
 This directory contains runnable and copy-paste exercises for enterprise engineering teams learning GitHub Copilot under **Usage-Based Billing (UBB)** with pooled GitHub AI Credits.
 
+## Portable copy
+
+To install token-saving defaults in another repo, start with [INSTALL.md](../INSTALL.md) — minimum drop-in is `.github/copilot-instructions.md` + `.copilotignore`.
+
 ## Prerequisites
 
 - Copilot Business or Enterprise license assigned to your org
@@ -28,24 +32,27 @@ This directory contains runnable and copy-paste exercises for enterprise enginee
 
 All code samples use **Contoso.Retail** — a synthetic e-commerce platform. No production data, customer PII, or live secrets appear in this repository.
 
-## Before/After legend
+## Uniform exercise format
 
-Every exercise uses this structure:
+Every exercise follows the same markdown structure (see [`templates/exercise-template.md`](../templates/exercise-template.md)):
 
 ```markdown
-### Before (Token Wasteful / Non-Compliant)
-> [prompt]
+> **Category:** `cache-friendly` | `token-bleed`
+> **Skill:** …
+> **Supporting files:** …
 
+## Scenario
+
+### Before (Token Wasteful / Non-Compliant)
 ### After (FinOps Clean / Enterprise Compliant)
-> [prompt]
 
 **Why:** …
-**Credit tier:** Low | Medium | High
+**Credit tier:** Before = **…** | After = **…**
 **Compliance:** Pass | Fail | Risk
 ```
 
 ## Next steps
 
 - Complete all exercises in `cache_friendly_patterns/` before `token_bleed_anti_patterns/`.
-- Copy [`.github/copilot-instructions.md`](../.github/copilot-instructions.md) into your team's service repositories and customize Azure NorthStar names to match your landing zone.
+- Copy [`.github/copilot-instructions.md`](../.github/copilot-instructions.md) and [`templates/.copilotignore`](../templates/.copilotignore) into your team's service repositories; customize Azure NorthStar names to match your landing zone.
 - Return to the [Master Enterprise Guide](../README.md) for policy rollout and admin budget configuration.

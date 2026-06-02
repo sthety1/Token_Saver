@@ -70,10 +70,6 @@ export function auditLog() { /* ... */ }
 // ... antifraud, GDPR export, admin dashboards, etc.
 
 /**
- * EXERCISE PROMPTS
- *
- * Before: #file OrderService.full.ts — "Add correlation ID logging to placeOrder"
- * After:  #file OrderService.chunk.ts — same task
- *
+ * EXERCISE: See 03_semantic_chunk_boundaries/README.md for Before/After prompts.
  * Credit tier: Before = High | After = Low
  */
