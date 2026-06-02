@@ -1,10 +1,10 @@
 # Anti-Pattern 4: Dependency Tree Explosion
 
-Asking Copilot to "explain the entire solution" forces ingestion of project references, transitive packages, and generated clients — **dependency tree explosion** — when you only need one vertical slice.
+> **Category:** `token-bleed`  
+> **Skill:** Trace one vertical slice (≤3 files) instead of whole-solution reasoning  
+> **Supporting files:** none
 
----
-
-## Context
+## Scenario
 
 New engineer onboarding to Contoso.Retail — wants to understand how checkout calls inventory.
 
@@ -22,7 +22,7 @@ New engineer onboarding to Contoso.Retail — wants to understand how checkout c
 
 **Credit tier:** **High**
 
-**Compliance:** Pass (synthetic) — but **governance risk** if real solution contains internal package feeds in prose output
+**Compliance:** **Risk** — real solutions may expose internal package feeds in prose output
 
 ---
 
@@ -36,9 +36,9 @@ New engineer onboarding to Contoso.Retail — wants to understand how checkout c
 
 **Why:** Three files define the integration boundary. Contracts file is the **semantic seam** — not the entire Inventory service implementation.
 
-**Credit tier:** **Low–Medium**
+**Credit tier:** Before = **High** | After = **Low–Medium**
 
-**Compliance:** Pass
+**Compliance:** **Pass**
 
 ---
 

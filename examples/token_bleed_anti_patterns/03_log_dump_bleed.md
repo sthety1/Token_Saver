@@ -1,10 +1,10 @@
 # Anti-Pattern 3: Log Dump Bleed
 
-Pasting full CI or production logs into Copilot Chat is one of the fastest ways to burn **thousands of input tokens** in a single turn. Logs are repetitive, high-entropy, and rarely need more than 30–50 lines around the failure.
+> **Category:** `token-bleed`  
+> **Skill:** Paste a redacted 30-line excerpt — never full CI or production logs  
+> **Supporting files:** none
 
----
-
-## Context
+## Scenario
 
 Azure DevOps pipeline `contoso-retail-ci` failed on stage `integration-tests`.
 
@@ -23,7 +23,7 @@ Azure DevOps pipeline `contoso-retail-ci` failed on stage `integration-tests`.
 
 **Credit tier:** **High** (can exceed 500 credits on frontier models)
 
-**Compliance:** **Fail risk** — production logs may contain hostnames, account IDs, email addresses in assertion output
+**Compliance:** **Fail** — production logs may contain hostnames, account IDs, email addresses
 
 ---
 
@@ -43,9 +43,9 @@ Azure DevOps pipeline `contoso-retail-ci` failed on stage `integration-tests`.
 
 **Why:** Error signature + one test file = sufficient signal. Correlation ID truncated; no customer payloads.
 
-**Credit tier:** **Low**
+**Credit tier:** Before = **High** | After = **Low**
 
-**Compliance:** Pass
+**Compliance:** **Pass**
 
 ---
 

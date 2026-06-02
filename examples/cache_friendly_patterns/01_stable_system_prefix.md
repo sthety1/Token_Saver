@@ -1,10 +1,12 @@
 # Exercise 1: Stable System Prefix
 
-Repository-wide instructions in [`.github/copilot-instructions.md`](../../.github/copilot-instructions.md) load automatically. They form a **stable prefix** that Copilot can reuse across turns. Re-pasting your architecture handbook every message forces fresh input billing and destroys cache-hit ratio.
-
----
+> **Category:** `cache-friendly`  
+> **Skill:** Move standards into `.github/copilot-instructions.md` instead of re-pasting  
+> **Supporting files:** [`.github/copilot-instructions.md`](../../.github/copilot-instructions.md)
 
 ## Scenario
+
+Repository-wide instructions in [`.github/copilot-instructions.md`](../../.github/copilot-instructions.md) load automatically. They form a **stable prefix** Copilot can reuse across turns. Re-pasting your architecture handbook every message forces fresh input billing and destroys cache-hit ratio.
 
 You are implementing a new `RefundRequested` Service Bus handler in `Contoso.Retail.Orders`.
 
@@ -23,6 +25,10 @@ You are implementing a new `RefundRequested` Service Bus handler in `Contoso.Ret
 > Now add unit tests for the handler you just wrote.
 
 **Estimated tokens:** ~450 tokens of standards × 2 turns = **900 tokens of duplicate fresh input** before your actual task tokens.
+
+**Credit tier:** **Medium–High**
+
+**Compliance:** **Pass**
 
 ---
 

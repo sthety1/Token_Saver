@@ -1,5 +1,11 @@
 # Exercise 3: Semantic Chunk Boundaries
 
+> **Category:** `cache-friendly`  
+> **Skill:** Attach semantic chunks, not god-files  
+> **Supporting files:** [OrderService.chunk.ts](OrderService.chunk.ts), [OrderService.full.ts](OrderService.full.ts)
+
+## Scenario
+
 Split god-files by **bounded context** before attaching them to Copilot Chat. One chat turn should carry one **semantic chunk** — the minimum code that answers the question.
 
 ## Files
@@ -15,6 +21,15 @@ Split god-files by **bounded context** before attaching them to Copilot Chat. On
 
 > #file examples/cache_friendly_patterns/03_semantic_chunk_boundaries/OrderService.full.ts  
 > Add correlation ID logging to `placeOrder` and validate inventory before publish.
+
+**Mechanisms of waste:**
+
+- Input tokens scale with unrelated reporting, tax, and loyalty code
+- Large attachment increases cache invalidation surface on any edit
+
+**Credit tier:** **High**
+
+**Compliance:** **Pass**
 
 ---
 

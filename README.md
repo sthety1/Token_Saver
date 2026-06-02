@@ -6,8 +6,10 @@ This repository trains enterprise engineering teams to maximize GitHub Copilot p
 
 | Resource | Purpose |
 |----------|---------|
+| [INSTALL.md](INSTALL.md) | **Copy this kit into any repo** — instructions + `.copilotignore` |
 | [examples/](examples/) | Hands-on cache-friendly and anti-pattern exercises |
 | [.github/copilot-instructions.md](.github/copilot-instructions.md) | Drop-in repo system prompt for token + security + Azure defaults |
+| [templates/](templates/) | Exercise template and `.copilotignore` source |
 
 **Last verified:** June 2026 (UBB effective June 1, 2026; promotional credit uplift through September 1, 2026). Pricing and models change—always confirm against [GitHub Docs](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing).
 
@@ -257,7 +259,7 @@ Within a Copilot Chat session, the model provider may retain an internal **atten
 
 - Stable [`.github/copilot-instructions.md`](.github/copilot-instructions.md) prefix
 - Same `#file` set across related turns
-- **Append-at-EOF** edits — [02_sequential_append_edits.ts](examples/cache_friendly_patterns/02_sequential_append_edits.ts)
+- Append-at-EOF edits — [02_sequential_append_edits.md](examples/cache_friendly_patterns/02_sequential_append_edits.md)
 - Concise follow-up prompts (delta only)
 
 ### 2.3 Copilot Chat vs inline completions
@@ -520,7 +522,7 @@ Track these monthly at org and cost-center level:
 | Module | Duration | Activity |
 |--------|----------|----------|
 | 1 — Economics | 45 min | Lecture: PRU → credits; pool math exercise (100 seats) |
-| 2 — Cache-first | 45 min | Lab: [01_stable_system_prefix](examples/cache_friendly_patterns/01_stable_system_prefix.md) + [02_sequential_append_edits](examples/cache_friendly_patterns/02_sequential_append_edits.ts) |
+| 2 — Cache-first | 45 min | Lab: [01_stable_system_prefix](examples/cache_friendly_patterns/01_stable_system_prefix.md) + [02_sequential_append_edits](examples/cache_friendly_patterns/02_sequential_append_edits.md) |
 | 3 — Token bleed | 60 min | Rotate through [anti-patterns](examples/token_bleed_anti_patterns/); each engineer runs Before/After |
 | 4 — Compliance | 30 min | Tabletop: PII paste incident response |
 | 5 — Azure NorthStar | 45 min | Refactor prompt: god-controller → handler + Service Bus |
@@ -660,7 +662,11 @@ Content is training material for internal enterprise use. Verify billing numbers
 ```text
 GitHub_Tokensaver/
 ├── README.md
+├── INSTALL.md                 ← copy kit into other repos
 ├── .github/copilot-instructions.md
+├── templates/
+│   ├── exercise-template.md   ← uniform Before/After format
+│   └── .copilotignore
 └── examples/
     ├── cache_friendly_patterns/
     └── token_bleed_anti_patterns/

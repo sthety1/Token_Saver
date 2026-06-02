@@ -1,12 +1,10 @@
 # Anti-Pattern 5: PII and Production Data in Prompts
 
-**Compliance failure is non-negotiable.** It also causes **token bleed** when you paste wide JSON payloads, CSV exports, or SQL query results "to help Copilot debug."
+> **Category:** `token-bleed`  
+> **Skill:** Use synthetic repro payloads — never production JSON, SQL, or log exports  
+> **Supporting files:** none
 
-This exercise uses **synthetic** non-compliant examples — never copy these patterns with real data.
-
----
-
-## Context
+## Scenario
 
 Orders API returns 500 for a specific customer checkout.
 
@@ -57,9 +55,9 @@ Orders API returns 500 for a specific customer checkout.
 
 **Why:** Minimal repro without PII; single handler file; fast model.
 
-**Credit tier:** **Low**
+**Credit tier:** Before = **High** | After = **Low**
 
-**Compliance:** Pass
+**Compliance:** **Pass**
 
 ---
 

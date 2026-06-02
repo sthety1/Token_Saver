@@ -153,4 +153,5 @@ Before heavy generation, ask the user to confirm:
 ## References
 
 - Org billing: pooled GitHub AI Credits (Business 1,900/user/mo standard; Enterprise 3,900; promo through Sep 1, 2026: 3,000 / 7,000).
-- Training repo: [README.md](../README.md), [examples/README.md](../examples/README.md).
+- When copied to a service repo: customize Azure NorthStar rows above; keep this file path as `.github/copilot-instructions.md`.
+- Optional training material: GitHub Tokensaver repo (`INSTALL.md`, `examples/`, `templates/exercise-template.md`).
