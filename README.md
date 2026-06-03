@@ -10,6 +10,8 @@ Drop-in defaults for **GitHub Copilot in VS Code** under usage-based billing (po
 
 **Install guide:** [INSTALL.md](INSTALL.md) — quick start, customization, verification checklist, and prompt habits.
 
+**Community guide:** [docs/FURTHER-READING.md](docs/FURTHER-READING.md) — techniques from [olivomarco/github-copilot-token-optimization](https://github.com/olivomarco/github-copilot-token-optimization) mapped to this kit.
+
 **Last verified:** June 2026. Confirm billing and models against [GitHub Docs — models and pricing](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing).
 
 ---
@@ -32,12 +34,11 @@ Re-pasting standards every turn bills as **fresh input**. Instructions in `copil
 git clone <your-org>/GitHub_Tokensaver.git
 cd GitHub_Tokensaver
 
-REPO=/path/to/your-service-repo
-mkdir -p "$REPO/.github/instructions"
-cp .github/copilot-instructions.md "$REPO/.github/copilot-instructions.md"
-cp .github/instructions/*.instructions.md "$REPO/.github/instructions/"
-cp .copilotignore "$REPO/.copilotignore"
+./scripts/install-kit.sh /path/to/your-service-repo
+./scripts/verify-kit.sh /path/to/your-service-repo
 ```
+
+Manual copy still works — see [INSTALL.md](INSTALL.md).
 
 Open the service repo in VS Code 1.120+ with Copilot signed in. Edit `azure-northstar.instructions.md` for your landing zone before wide rollout.
 
@@ -51,6 +52,7 @@ CHEAP:     S-tier model (GPT-5 mini / nano) + ≤3 #file + same thread + patch-o
 EXPENSIVE: @workspace, Agent for one-shot edits, GPT-5.3-Codex default, Opus/GPT-5.5, full logs
 OUTPUT:    Diffs beat essays — output tokens cost more than input
 CACHE:     Stable copilot-instructions, append-at-EOF, same #file set; no model switch mid-thread
+MCP:       Disable unused MCP servers; workspace mcp.json over global sprawl
 COMPLY:    No PII or production data — synthetic repro only
 ```
 
@@ -98,11 +100,20 @@ Promotional uplift for existing customers through **September 1, 2026:** Busines
 GitHub_Tokensaver/
 ├── INSTALL.md
 ├── README.md
+├── docs/
+│   └── FURTHER-READING.md
+├── scripts/
+│   ├── install-kit.sh
+│   └── verify-kit.sh
 ├── .github/
 │   ├── copilot-instructions.md
 │   └── instructions/
+│       ├── _template.instructions.md
 │       ├── azure-northstar.instructions.md
 │       └── tests.instructions.md
+├── .vscode/
+│   ├── extensions.json
+│   └── mcp.json.example
 └── .copilotignore
 ```
 

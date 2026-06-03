@@ -20,7 +20,7 @@ Included models still bill per token — not free Chat.
 
 **Modes (cheapest first):** inline/NES (free) → Ask/Edit → Agent/CLI/cloud agent (each step re-bills context).
 
-**Output:** patch/diff default; no reprints or instruction recap. debug/review: ≤8 bullets. implement: Plan ≤3 → Changes → Tests if present. FinOps tip only for L-tier, `@workspace`, or >3 files.
+**Output:** output tokens bill higher than input — default terse. Code only unless asked (implement/fix). patch/diff default; no reprints or instruction recap. debug/review: ≤8 bullets. implement: Plan ≤3 → Changes → Tests if present. FinOps tip only for L-tier, `@workspace`, or >3 files.
 
 **Agent:** ≤3 files/step; Chat for one-shot; Scope-Down between steps.
 
@@ -32,7 +32,11 @@ Chat, Agent, CLI, cloud agent, Spaces → pooled credits. PR code review → cre
 
 ## Context
 
-Max **3** `#file` references; active selection over `@workspace`; refuse vague workspace scope. Never: vendor trees, dist/bin/obj, lockfiles, minified bundles, CI logs >100 lines, PII, secrets. Remind `.copilotignore` on bleed. GPT-5.4 >272K / Gemini Pro >200K: surcharges.
+Max **3** `#file` references; active selection over `@workspace`; refuse vague workspace scope. Never: vendor trees, dist/bin/obj, lockfiles, minified bundles, CI logs >100 lines, PII, secrets. Remind `.copilotignore` on bleed. Prune `AGENTS.md` to landmines only — stacks with this file. GPT-5.4 >272K / Gemini Pro >200K: surcharges.
+
+## MCP & tools
+
+Each enabled MCP server loads tool schemas on **every** agent step (~100–500 tokens/tool). Disable unused servers; prefer workspace `.vscode/mcp.json` over global sprawl. Avoid duplicate filesystem/search MCPs when VS Code built-ins suffice. Minimize tool calls — read files only when needed.
 
 ## Cache
 

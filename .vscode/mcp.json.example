@@ -1,0 +1,5 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/specification/main/schema/mcp.schema.json",
+  "servers": {},
+  "_comment": "Copy to mcp.json in service repos. Enable only MCP servers needed for this project — each server's tool schemas bill on every agent step. See docs/FURTHER-READING.md and copilot-instructions.md (MCP & tools)."
+}

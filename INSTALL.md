@@ -19,6 +19,13 @@ Copy into each project:
 | [`.copilotignore`](.copilotignore) | `.copilotignore` (repo root) |
 
 ```bash
+./scripts/install-kit.sh /path/to/your-service-repo
+./scripts/verify-kit.sh /path/to/your-service-repo
+```
+
+Or copy manually:
+
+```bash
 REPO=/path/to/your-service-repo
 
 mkdir -p "$REPO/.github/instructions"
@@ -26,6 +33,8 @@ cp .github/copilot-instructions.md "$REPO/.github/copilot-instructions.md"
 cp .github/instructions/*.instructions.md "$REPO/.github/instructions/"
 cp .copilotignore "$REPO/.copilotignore"
 ```
+
+Skip `_template.instructions.md` in production repos — copy and rename it when adding new path rules.
 
 Open the project in VS Code. Copilot loads `.github/copilot-instructions.md` as a **stable prefix** on every turn. Path-scoped files apply only when `applyTo` matches the file you are editing.
 
@@ -72,7 +81,8 @@ After copying into a pilot repo:
 - [ ] `.copilotignore` at repo root
 - [ ] Open a `.cs` file — References include `azure-northstar.instructions.md` when applicable
 - [ ] Smoke test: short prompt + one `#file` — no standards preamble in chat
-- [ ] `wc -c .github/copilot-instructions.md` — keep under **4,000** for PR code review coverage
+- [ ] Run `./scripts/verify-kit.sh .` — copilot-instructions under **4,000** bytes for PR code review
+- [ ] MCP: only servers needed for this repo enabled (workspace `.vscode/mcp.json` if used)
 
 ---
 
@@ -118,10 +128,15 @@ Billing overview: [README.md](README.md).
 GitHub_Tokensaver/
 ├── INSTALL.md
 ├── README.md
+├── docs/FURTHER-READING.md
+├── scripts/install-kit.sh
+├── scripts/verify-kit.sh
 ├── .github/
 │   ├── copilot-instructions.md
 │   └── instructions/
+│       ├── _template.instructions.md
 │       ├── azure-northstar.instructions.md
 │       └── tests.instructions.md
+├── .vscode/extensions.json
 └── .copilotignore
 ```
